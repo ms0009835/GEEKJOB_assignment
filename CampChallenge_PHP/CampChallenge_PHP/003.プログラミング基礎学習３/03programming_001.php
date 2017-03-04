@@ -11,6 +11,11 @@ function my_profile($name,$birth,$intro){
   echo '誕生日:'.$birth;
   br();
   echo '自己紹介:'.$intro;
+  br();
+
 }
 
-my_profile($name,$birth,$intro);
+for($i=0;$i<=10;$i++){
+  my_profile($name,$birth,$intro);
+
+}
