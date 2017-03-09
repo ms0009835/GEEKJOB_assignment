@@ -18,21 +18,13 @@ $P003=array('ID:'=>003,'NAME:'=>'上野','BIRTHDAY:'=>'１月３０日','ADDRESS
 
 function open($P001,$P002,$P003,$check)
 {
-  if($P001['NAME:']==$check){
-    foreach ($P001 as $key => $value){
-      echo $key.$value.br();
-    }
-    return $P001;
-  }elseif($P002['NAME:']==$check){
-    foreach ($P002 as $key => $value){
-      echo $key.$value.br();
-    }
-    return $P002;
-  }elseif($P003['NAME:']==$check){
-    foreach ($P003 as $key => $value) {
-      echo $key.$value.br();
-    }
-    return $P003;
+  if(stristr($P001['NAME:'],$check)){
+    return array('ID:'=>001,'NAME:'=>'目黒','BIRTHDAY:'=>'１月８日','ADDRESS:'=>'東京都');
+  }elseif(stristr($P002['NAME:'],$check)){
+    return array('ID:'=>002,'NAME:'=>'渋谷','BIRTHDAY:'=>'１月１２日','ADDRESS:'=>'東京都');
+  }elseif(stristr($P003['NAME:'],$check)){
+    return array('ID:'=>003,'NAME:'=>'上野','BIRTHDAY:'=>'１月３０日','ADDRESS:'=>'東京都');
+
   }elseif($check==''){
     echo '検索する名前を入力してください。';
   }
@@ -40,4 +32,8 @@ function open($P001,$P002,$P003,$check)
     echo '該当者がいません。';
   }
 }
-open($P001,$P002,$P003,$check);
+
+$result=open($P001,$P002,$P003,$check);
+foreach ($result as $key => $val){
+  echo $key.$val.br();
+}
