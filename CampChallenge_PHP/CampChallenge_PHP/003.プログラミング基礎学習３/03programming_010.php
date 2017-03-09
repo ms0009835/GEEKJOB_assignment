@@ -24,7 +24,9 @@ $MAIN=array('ID001'=>array('ID'=>001,'NAME'=>'目黒','BIRTHDAY'=>'1月8日','AD
 'ID003'=>array('ID'=>003,'NAME'=>'恵比寿','BIRTHDAY'=>'3月19日','ADDRESS'=>'ドイツ'));
 
 foreach($MAIN as $key1 =>$val1){
-  if($key1!=='ID003'){
+  if($key1=='ID003'){
+    break;
+  }
     foreach($val1 as $key2 =>$val2)
       {
         if($key2=='BIRTHDAY'){
@@ -34,7 +36,4 @@ foreach($MAIN as $key1 =>$val1){
           }
         echo $key2.':'.$val2.br();
       }
-  }elseif($key1=='ID003'){
-    break;
   }
-}
