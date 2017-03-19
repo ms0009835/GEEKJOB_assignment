@@ -12,50 +12,58 @@
 <body>
 <form action='05programming_005.php' method='get'>
 
-<!--2回目-->
 <?php
 
-$Name_cookie=@$_GET['txtName'];
-$Gender_cookie=@$_GET['rdoGender'];
-$Hobby_cookie=@$_GET['mulText'];
+$lastName=@$_GET['txtName'];
+$lastGender=@$_GET['rdoGender'];
+$lastHobby=@$_GET['mulText'];
 
-setcookie('txtName',@$_GET['txtName']);
-setcookie('rdoGender',@$_GET['rdoGender']);
-setcookie('mulText',@$_GET['mulText']);
+if(isset($_GET['txtName'],$_GET['rdoGender'],$_GET['mulText'])){
 
-if(isset($Name_cookie,$Gender_cookie,$Hobby_cookie)):?>
+  ?>
 
-  <p>名前：<input type='text' name='txtName' value=<?PHP echo $Name_cookie ?>></p>
+  <p>名前：<input type='text' name='txtName' value=<?PHP echo $lastName ?>></p>
   <p>性別：
          男性<input type='radio' name='rdoGender'value='男性'
-         <?PHP if(@$Gender_cookie=='男性'):?> checked>
+         <?PHP
+         if($lastGender=='男性'){
+         ?>
+         checked<?PHP }?>>
 
          女性<input type='radio' name='rdoGender'value='女性'
-         <?PHP elseif(@$Gender_cookie=='女性'):?> checked>
-         <?PHP endif;?>
+         <?PHP
+         if($lastGender=='女性'){
+         ?>
+         checked<?PHP }?>>
   </p>
-  <p>趣味：<br><textarea name ='mulText'><?PHP echo $Hobby_cookie ?></textarea></p>
+  <p>趣味：<br><textarea name ='mulText'><?PHP echo $lastHobby ?></textarea></p>
   <P><input type='submit' value='送信'></p>
 
 <!--前回の入力データ出力-->
   <?php
+
   echo  '<前回の入力データ>'.'<br/>';
-  echo  '名前：'.$Name_cookie.'<br/>';
-  echo  '性別：'.$Gender_cookie.'<br/>';
-  echo  '趣味：'.$Hobby_cookie.'<br/>';
- ?>
+  echo  '名前：'.$lastName.'<br/>';
+  echo  '性別：'.$lastGender.'<br/>';
+  echo  '趣味：'.$lastHobby.'<br/>';
 
-<!--1回目-->
-<?PHP else:?>
-<p>名前：<input type='text' name='txtName'></p>
-<p>性別：
-   男性<input type='radio' name='rdoGender'value='男性'>
-   女性<input type='radio' name='rdoGender'value='女性'>
- </p>
- <p>趣味：<br><textarea name ='mulText' ></textarea></p>
- <P><input type='submit' value='送信'></p>
-<?php  endif;?>
+  setcookie('txtName',$lastName);
+  setcookie('rdoGender',$lastGender);
+  setcookie('mulText',$lastHobby);
 
+}else{
+//入力値がない時
+?>
+  <p>名前：<input type='text' name='txtName'></p>
+  <p>性別：
+     男性<input type='radio' name='rdoGender'value='男性'>
+     女性<input type='radio' name='rdoGender'value='女性'>
+   </p>
+   <p>趣味：<br><textarea name ='mulText' ></textarea></p>
+   <P><input type='submit' value='送信'></p>
+<?PHP
+}
+?>
 </form>
 </body>
 </HTML>
