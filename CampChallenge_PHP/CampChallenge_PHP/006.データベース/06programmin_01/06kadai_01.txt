@@ -1,0 +1,14 @@
+﻿MariaDB [Challenge_db]> insert into profiles VALUES(1,'田中　実','012-345-6789',30);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+MariaDB [Challenge_db]> insert into profiles VALUES(2,'鈴木　茂','090-1122-3344',37);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+MariaDB [Challenge_db]> insert into profiles VALUES(3,'鈴木　実','080-5566-7788',24);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+MariaDB [Challenge_db]> insert into profiles VALUES(4,'佐藤　清','012-0987-6543',19);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+MariaDB [Challenge_db]> insert into profiles VALUES(5,'高橋　清','090-9900-1234',24);
+Query OK, 1 row affected, 1 warning (0.01 sec)
