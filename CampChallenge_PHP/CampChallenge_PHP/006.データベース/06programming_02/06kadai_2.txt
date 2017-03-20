@@ -1,0 +1,1 @@
+MariaDB [Challenge_db]> select profilesID,name,tell,age from profiles WHERE profilesID=3;
