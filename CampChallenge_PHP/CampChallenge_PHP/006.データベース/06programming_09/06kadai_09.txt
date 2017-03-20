@@ -1,0 +1,285 @@
++--------+----------+---------------+------+------------+-------------
+-+-----------+
+|      1 | “c’†@ŽÀ | 012-345-6789  |   30 | 1994-02-01 |            3
+ |         1 |
+|      2 | —é–Ø@–Î | 090-1122-3344 |   37 | 1987-08-12 |            3
+ |         4 |
+|      3 | —é–Ø@ŽÀ | 080-5566-7788 |   24 | 2000-12-24 |            2
+ |         5 |
+|      4 | ²“¡@´ | 012-0987-6543 |   19 | 2005-08-01 |            1
+ |         5 |
+|      5 | ‚‹´@´ | 090-9900-1234 |   24 | 2000-12-24 |            3
+ |         5 |
++--------+----------+---------------+------+------------+-------------
+-+-----------+
+5 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> Alter table user add primary key(userID);
+Query OK, 5 rows affected (0.27 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [Challenge_db]> select * from user;
++--------+----------+---------------+------+------------+-------------
+-+-----------+
+| userID | name     | tell          | age  | birthday   | departmentID
+ | stationID |
++--------+----------+---------------+------+------------+-------------
+-+-----------+
+|      1 | “c’†@ŽÀ | 012-345-6789  |   30 | 1994-02-01 |            3
+ |         1 |
+|      2 | —é–Ø@–Î | 090-1122-3344 |   37 | 1987-08-12 |            3
+ |         4 |
+|      3 | —é–Ø@ŽÀ | 080-5566-7788 |   24 | 2000-12-24 |            2
+ |         5 |
+|      4 | ²“¡@´ | 012-0987-6543 |   19 | 2005-08-01 |            1
+ |         5 |
+|      5 | ‚‹´@´ | 090-9900-1234 |   24 | 2000-12-24 |            3
+ |         5 |
++--------+----------+---------------+------+------------+-------------
+-+-----------+
+5 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID,
+stationID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near '' at line 1
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID,
+stationID) references no;
+ERROR 1005 (HY000): Can't create table `challenge_db`.`#sql-b9c_7` (er
+rno: 150 "Foreign key constraint is incorrectly formed")
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID,
+stationID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near '' at line 1
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID)
+;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near '' at line 1
+MariaDB [Challenge_db]> Alter table user add FOREIGN key('departmentID
+');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near ''departmentID')' at line 1
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID)
+ references user;
+ERROR 1005 (HY000): Can't create table `challenge_db`.`#sql-b9c_7` (er
+rno: 150 "Foreign key constraint is incorrectly formed")
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID)
+ references department;
+ERROR 1005 (HY000): Can't create table `challenge_db`.`#sql-b9c_7` (er
+rno: 150 "Foreign key constraint is incorrectly formed")
+MariaDB [Challenge_db]> Alter table user add FOREIGN key(departmentID,
+stationID) references no;cls
+ERROR 1005 (HY000): Can't create table `challenge_db`.`#sql-b9c_7` (er
+rno: 150 "Foreign key constraint is incorrectly formed")
+    -> \c
+MariaDB [Challenge_db]> cls
+    -> \c
+MariaDB [Challenge_db]> cls;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near 'cls' at line 1
+MariaDB [Challenge_db]> create department
+    -> \c
+MariaDB [Challenge_db]> create table department(departmentID int, depa
+rtmentName varchar(255) not null primary key);
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [Challenge_db]> select * from department;
+Empty set (0.00 sec)
+
+MariaDB [Challenge_db]> insert into department values(1,'ŠJ”­•”');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into department values(2,'‰c‹Æ•”');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into department values(3,'‘–±•”');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> select * from department;
++--------------+----------------+
+| departmentID | departmentName |
++--------------+----------------+
+|            2 | ‰c‹Æ•”         |
+|            3 | ‘–±•”         |
+|            1 | ŠJ”­•”         |
++--------------+----------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> alter table department drop primarykey;
+ERROR 1091 (42000): Can't DROP 'primarykey'; check that column/key exi
+sts
+MariaDB [Challenge_db]> alter table department drop departmentName;
+Query OK, 3 rows affected (0.11 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [Challenge_db]> alter table department departmentID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near '' at line 1
+MariaDB [Challenge_db]> alter table department add primary key(departm
+entID);
+Query OK, 3 rows affected (0.11 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [Challenge_db]> select * from department;
++--------------+
+| departmentID |
++--------------+
+|            1 |
+|            2 |
+|            3 |
++--------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> delete department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near '' at line 1
+MariaDB [Challenge_db]> delete from department;
+Query OK, 3 rows affected (0.00 sec)
+
+MariaDB [Challenge_db]> select * from department;
+Empty set (0.00 sec)
+
+MariaDB [Challenge_db]> create department(departmentID int not null pr
+imary key,departmentName varchar(255));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the ma
+nual that corresponds to your MariaDB server version for the right syn
+tax to use near 'department(departmentID int not null primary key,depa
+rtmentName varchar(255))' at line 1
+MariaDB [Challenge_db]> create table department(departmentID int not n
+ull primary key,departmentName varchar(255));
+ERROR 1050 (42S01): Table 'department' already exists
+MariaDB [Challenge_db]> drop table department;
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [Challenge_db]> create table department(departmentID int not n
+ull primary key,departmentName varchar(255));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [Challenge_db]> insert into department values(1,'ŠJ”­•”');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into department values(2,'‰c‹Æ•”');
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [Challenge_db]> insert into department values(3,'‘–±•”');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> select * from department;
++--------------+----------------+
+| departmentID | departmentName |
++--------------+----------------+
+|            1 | ŠJ”­•”         |
+|            2 | ‰c‹Æ•”         |
+|            3 | ‘–±•”         |
++--------------+----------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> create table station(stationID int not null pr
+imary key,stationName varchar(255));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [Challenge_db]> insert into station values(1,'‹ã’i‰º');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into station values(2,'‰i“c’¬');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into station values(3,'a’J');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into station values(4,'_•Û’¬');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> insert into station values(5,'ãˆä‘');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [Challenge_db]> select * from department;
++--------------+----------------+
+| departmentID | departmentName |
++--------------+----------------+
+|            1 | ŠJ”­•”         |
+|            2 | ‰c‹Æ•”         |
+|            3 | ‘–±•”         |
++--------------+----------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> select * from station;
++-----------+-------------+
+| stationID | stationName |
++-----------+-------------+
+|         1 | ‹ã’i‰º      |
+|         2 | ‰i“c’¬      |
+|         3 | a’J        |
+|         4 | _•Û’¬      |
+|         5 | ãˆä‘      |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> alter table user add foreign key(departmentID) references department(departmentID)
+    -> \c
+MariaDB [Challenge_db]> alter table user add foreign key(departmentID) references department(departmentID)
+    -> \c
+MariaDB [Challenge_db]> alter table user add foreign key(departmentID) references department(departmentID);
+Query OK, 5 rows affected (0.11 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [Challenge_db]> alter table user add foreign key(stationID) references station(stationID)
+    -> \c
+MariaDB [Challenge_db]> alter table user add foreign key(stationID) references station(stationID);
+Query OK, 5 rows affected (0.12 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [Challenge_db]> select * from station;
++-----------+-------------+
+| stationID | stationName |
++-----------+-------------+
+|         1 | ‹ã’i‰º      |
+|         2 | ‰i“c’¬      |
+|         3 | a’J        |
+|         4 | _•Û’¬      |
+|         5 | ãˆä‘      |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> select * from user;
++--------+----------+---------------+------+------------+--------------+-----------+
+| userID | name     | tell          | age  | birthday   | departmentID | stationID |
++--------+----------+---------------+------+------------+--------------+-----------+
+|      1 | “c’†@ŽÀ | 012-345-6789  |   30 | 1994-02-01 |            3 |         1 |
+|      2 | —é–Ø@–Î | 090-1122-3344 |   37 | 1987-08-12 |            3 |         4 |
+|      3 | —é–Ø@ŽÀ | 080-5566-7788 |   24 | 2000-12-24 |            2 |         5 |
+|      4 | ²“¡@´ | 012-0987-6543 |   19 | 2005-08-01 |            1 |         5 |
+|      5 | ‚‹´@´ | 090-9900-1234 |   24 | 2000-12-24 |            3 |         5 |
++--------+----------+---------------+------+------------+--------------+-----------+
+5 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> select * from department;
++--------------+----------------+
+| departmentID | departmentName |
++--------------+----------------+
+|            1 | ŠJ”­•”         |
+|            2 | ‰c‹Æ•”         |
+|            3 | ‘–±•”         |
++--------------+----------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]> select * from station;
++-----------+-------------+
+| stationID | stationName |
++-----------+-------------+
+|         1 | ‹ã’i‰º      |
+|         2 | ‰i“c’¬      |
+|         3 | a’J        |
+|         4 | _•Û’¬      |
+|         5 | ãˆä‘      |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+MariaDB [Challenge_db]>
