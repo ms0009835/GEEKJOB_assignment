@@ -1,0 +1,7 @@
+MariaDB [Challenge_db]> select profilesID,name,tell,age from profiles where name='çÇã¥Å@ê¥';
++------------+----------+---------------+------+
+| profilesID | name     | tell          | age  |
++------------+----------+---------------+------+
+|          5 | çÇã¥Å@ê¥ | 090-9900-1234 |   24 |
++------------+----------+---------------+------+
+1 row in set (0.00 sec)
